@@ -31,10 +31,13 @@
                         </td>
                     </tr>
                 @empty
+                    <h3 class="text-center">
+                        Nessun fumetto da poter mostrare, creane uno nuovoutilizzando il tasto qui sotto!
+                    </h3>
                 @endforelse
-
             </tbody>
         </table>
+        <a href="{{ route('comics.create') }}" class="btn btn-primary">Aggiungi un nuovo fumetto</a>
     </div>
 
 @endsection

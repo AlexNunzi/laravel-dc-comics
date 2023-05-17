@@ -24,11 +24,16 @@
                         <td>{{ $comic->series }}</td>
                         <td>{{ $comic->sale_date }}</td>
                         <td>{{ $comic->price }}</td>
-                        <td>
-                            <a href="{{ route('comics.show', ['comic' => $comic->id]) }}" class="btn btn-primary">Info</a>
+                        <td class="d-flex">
+                            <a href="{{ route('comics.show', ['comic' => $comic->id]) }}"
+                                class="btn btn-primary mx-1">Info</a>
                             <a href="{{ route('comics.edit', ['comic' => $comic->id]) }}"
-                                class="btn btn-secondary">Modifica</a>
-                            {{-- <a href="{{ route('comics.destroy') }}" class="btn btn-danger">Elimina</a> --}}
+                                class="btn btn-secondary mx-1">Modifica</a>
+                            <form method="POST" action="{{ route('comics.destroy', ['comic' => $comic->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="sublit" class="btn btn-danger mx-1">Elimina</button>
+                            </form>
                         </td>
                     </tr>
                 @empty

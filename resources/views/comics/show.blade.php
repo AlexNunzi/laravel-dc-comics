@@ -18,6 +18,7 @@
                     <li>Tipologia: {{ $comic->type }}</li>
                 </ul>
                 <a href="{{ route('comics.index') }}" class="btn btn-primary">Torna alla lista</a>
+                <a href="{{ route('comics.edit', ['comic' => $comic->id]) }}" class="btn btn-secondary">Modifica</a>
             </div>
         </div>
     </div>

@@ -42,13 +42,7 @@ class ComicController extends Controller
         $form_data = $request->all();
 
         $newComic = new Comic();
-        $newComic->title = $form_data["title"];
-        $newComic->description = $form_data["description"];
-        $newComic->thumb = $form_data["thumb"];
-        $newComic->price = $form_data["price"];
-        $newComic->series = $form_data["series"];
-        $newComic->sale_date = $form_data["sale_date"];
-        $newComic->type = $form_data["type"];
+        $newComic->fill($form_data);
         $newComic->save();
 
         return redirect()->route('comics.show', ['comic' => $newComic->id]);
@@ -60,9 +54,9 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Comic $comic)
     {
-        $comic = Comic::findOrFail($id);
+        // $comic = Comic::findOrFail($id); 
         return view('comics.show', compact('comic'));
     }
 
@@ -72,9 +66,9 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comic $comic)
     {
-        $comic = Comic::findOrFail($id);
+        // $comic = Comic::findOrFail($id);
         return view('comics.edit', compact('comic'));
     }
 
@@ -85,19 +79,12 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comic $comic)
     {
-        $comic = Comic::findOrFail($id);
+        // $comic = Comic::findOrFail($id);
         $form_data = $request->all();
 
-        $comic->title = $form_data["title"];
-        $comic->description = $form_data["description"];
-        $comic->thumb = $form_data["thumb"];
-        $comic->price = $form_data["price"];
-        $comic->series = $form_data["series"];
-        $comic->sale_date = $form_data["sale_date"];
-        $comic->type = $form_data["type"];
-        $comic->save();
+        $comic->update($form_data);
 
         return redirect()->route('comics.index');
     }
@@ -108,9 +95,9 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comic $comic)
     {
-        $comic = Comic::findOrFail($id);
+        // $comic = Comic::findOrFail($id);
         $comic->delete();
         return redirect()->route('comics.index');
     }

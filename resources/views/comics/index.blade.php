@@ -38,7 +38,7 @@
                     </tr>
                 @empty
                     <h3 class="text-center">
-                        Nessun fumetto da poter mostrare, creane uno nuovoutilizzando il tasto qui sotto!
+                        Nessun fumetto da poter mostrare, creane uno nuovo utilizzando il tasto qui sotto!
                     </h3>
                 @endforelse
             </tbody>

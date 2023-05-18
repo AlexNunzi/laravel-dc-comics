@@ -47,7 +47,23 @@ class ComicController extends Controller
             'series' => 'required|max:30',
             'sale_date' => 'required',
             'type' => 'required|max:30',
-        ]);
+        ],[
+            'required' => 'Il campo :attribute è obbligatorio.',
+            'max' => 'Il campo :attribute non deve superare i :max caratteri',
+            'price.max' => 'Il campo :attribute non può essere maggiore di 999999.99',
+            'price.min' => 'Il campo :attribute non può essere minore di 1.00',
+            'url' => 'Il campo :attribute deve contenere un URL valido',
+            'numeric' => 'Il campo :attribute deve essere un numero',
+        ],[
+            'title' => 'Titolo',
+            'description' => 'Descrizione',
+            'thumb' => 'URL',
+            'price' => 'Prezzo',
+            'series' => 'Serie',
+            'sale_date' => 'Prezzo di vendita',
+            'type' => 'Tipologia',
+        ]
+        );
 
         $form_data = $request->all();
 
@@ -99,7 +115,23 @@ class ComicController extends Controller
             'series' => 'required|max:30',
             'sale_date' => 'required',
             'type' => 'required|max:30',
-        ]);
+        ],[
+            'required' => 'Il campo :attribute è obbligatorio.',
+            'max' => 'Il campo :attribute non deve superare i :max caratteri',
+            'price.max' => 'Il campo :attribute non può essere maggiore di 999999.99',
+            'price.min' => 'Il campo :attribute non può essere minore di 1.00',
+            'url' => 'Il campo :attribute deve contenere un URL valido',
+            'numeric' => 'Il campo :attribute deve essere un numero',
+        ],[
+            'title' => 'Titolo',
+            'description' => 'Descrizione',
+            'thumb' => 'URL',
+            'price' => 'Prezzo',
+            'series' => 'Serie',
+            'sale_date' => 'Prezzo di vendita',
+            'type' => 'Tipologia',
+        ]
+        );
 
         // $comic = Comic::findOrFail($id);
         $form_data = $request->all();

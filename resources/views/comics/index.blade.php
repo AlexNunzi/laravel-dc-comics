@@ -30,38 +30,13 @@
                             <a href="{{ route('comics.edit', ['comic' => $comic->id]) }}"
                                 class="btn btn-secondary mx-1">Modifica</a>
 
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#modal{{ $comic->id }}">
-                                Elimina
-                            </button>
+                            <form id="form{{ $comic->id }}" method="POST"
+                                action="{{ route('comics.destroy', ['comic' => $comic->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="form_delete btn btn-danger mx-1">Elimina</button>
+                            </form>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="modal{{ $comic->id }}" data-bs-backdrop="static" tabindex="-1"
-                                aria-labelledby="Modal{{ $comic->id }}Label" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" id="Modal{{ $comic->id }}Label">Attenzione!
-                                            </h1>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Sei sicuro di voler eliminare definitivamente il fumetto dalla tabella?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Annulla</button>
-                                            <form method="POST"
-                                                action="{{ route('comics.destroy', ['comic' => $comic->id]) }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger mx-1">Elimina</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </td>
                     </tr>
                 @empty
@@ -71,6 +46,28 @@
                 @endforelse
             </tbody>
         </table>
+
+        <!-- Modal -->
+        <div class="modal fade" id="confirmDeleteModal" data-bs-backdrop="static" tabindex="-1"
+            aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteModalLabel">Attenzione!
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Sei sicuro di voler eliminare definitivamente il fumetto dalla tabella?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                        <button type="button" class="confirmDelete btn btn-danger">Elimina</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <a href="{{ route('comics.create') }}" class="btn btn-primary">Aggiungi un nuovo fumetto</a>
     </div>
 

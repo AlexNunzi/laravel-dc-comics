@@ -11,7 +11,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Titolo</th>
                     <th scope="col">Serie</th>
-                    <th scope="col">Data vendita</th>
+                    <th scope="col">Data di vendita</th>
                     <th scope="col">Prezzo</th>
                     <th scope="col">Opzioni</th>
                 </tr>

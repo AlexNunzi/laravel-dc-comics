@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 
@@ -37,36 +39,10 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
-        $request->validate([
-            // Validator rules
-            'title' => 'required|max:255',
-            'description' => 'required|max:65535',
-            'thumb' => 'required|url|max:255',
-            'price' => 'required|numeric|max:999999.99|min:1',
-            'series' => 'required|max:30',
-            'sale_date' => 'required',
-            'type' => 'required|max:30',
-        ],[
-            // Validator messages
-            'required' => 'Il campo :attribute è obbligatorio.',
-            'max' => 'Il campo :attribute non deve superare i :max caratteri',
-            'price.max' => 'Il campo :attribute non può essere maggiore di 999999.99',
-            'price.min' => 'Il campo :attribute non può essere minore di 1.00',
-            'url' => 'Il campo :attribute deve contenere un URL valido',
-            'numeric' => 'Il campo :attribute deve essere un numero',
-        ],[
-            // Validator attribute
-            'title' => 'Titolo',
-            'description' => 'Descrizione',
-            'thumb' => 'URL',
-            'price' => 'Prezzo',
-            'series' => 'Serie',
-            'sale_date' => 'Data di vendita',
-            'type' => 'Tipologia',
-        ]
-        );
+
+        $validated = $request->validated();
 
         $form_data = $request->all();
 
@@ -108,36 +84,10 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
-        $request->validate([
-            // Validator rules
-            'title' => 'required|max:255',
-            'description' => 'required|max:65535',
-            'thumb' => 'required|url|max:255',
-            'price' => 'required|numeric|max:999999.99|min:1',
-            'series' => 'required|max:30',
-            'sale_date' => 'required',
-            'type' => 'required|max:30',
-        ],[
-            // Validator messages
-            'required' => 'Il campo :attribute è obbligatorio.',
-            'max' => 'Il campo :attribute non deve superare i :max caratteri',
-            'price.max' => 'Il campo :attribute non può essere maggiore di 999999.99',
-            'price.min' => 'Il campo :attribute non può essere minore di 1.00',
-            'url' => 'Il campo :attribute deve contenere un URL valido',
-            'numeric' => 'Il campo :attribute deve essere un numero',
-        ],[
-            // Validator attribute
-            'title' => 'Titolo',
-            'description' => 'Descrizione',
-            'thumb' => 'URL',
-            'price' => 'Prezzo',
-            'series' => 'Serie',
-            'sale_date' => 'Data di vendita',
-            'type' => 'Tipologia',
-        ]
-        );
+        
+        $validated = $request->validated();
 
         // $comic = Comic::findOrFail($id);
         $form_data = $request->all();
